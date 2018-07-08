@@ -41,7 +41,7 @@ class Hero {
     // x pos
     this.x = 202;
     // y pos
-    this.y = 436;
+    this.y = 375;
     // sprite image
     this.sprite = 'images/char-princess-girl.png';
   }
@@ -59,16 +59,36 @@ class Hero {
   }
 
   //handle keyboard input
-  handleInput(keyCode) {
-    console.log(`This is the ${keycode}`);
+  handleInput(x) {
+
     // update player's x and y coord according to input
+    switch (x) {
+      case 'up':
+        console.log(`You moved ${x}.`);
+        this.y -= 80;
+        break;
+      case 'down':
+        console.log(`You moved ${x}.`);
+        this.y += 80;
+        break;
+      case 'left':
+        console.log(`You moved ${x}.`);
+        this.x -= 100;
+        break;
+      case 'right':
+        console.log(`You moved ${x}.`);
+        this.x += 100;
+        break;
+      default:
+        console.log('Please choose a direction using the arrows on your keyboard.')
+    }
   }
 
   // reset hero
   reset() {
     // set x and y to starting x and y
     this.x = 202;
-    this.y = 436;
+    this.y = 375;
   }
 
 }
@@ -94,6 +114,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
+
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
