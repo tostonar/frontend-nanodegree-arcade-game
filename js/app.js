@@ -62,6 +62,7 @@ class Hero {
   handleInput(x) {
 
     // update player's x and y coord according to input
+    // TODO: don't let player move off board
     switch (x) {
       case 'up':
         console.log(`You moved ${x}.`);
