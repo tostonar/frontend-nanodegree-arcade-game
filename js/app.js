@@ -1,15 +1,20 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // x pos
-
+    this.x = x;
     //y pos
-
+    this.y = y + 55; // center
+    // TODO: make speed a random number between 200 & 300
+    this.speed = speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.step = 101;
+    this.boundary = this.step * 5;
+    this.resetPos = -this.step;
 };
 
 // Update the enemy's position, required method for game
@@ -20,10 +25,14 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     // If enemy is not past boundary
+    if (this.x < this.boundary) {
       // move forward
       // increment x by speed * dt
-    // else
+      this.x += this.speed * dt;
+    } else {
       // reset pos to start
+      this.x = this.resetPos;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -41,7 +50,7 @@ class Hero {
     // x pos
     this.x = 202;
     // y pos
-    this.y = 375;
+    this.y = 400;
     // sprite image
     this.sprite = 'images/char-princess-girl.png';
   }
@@ -66,30 +75,32 @@ class Hero {
     switch (x) {
       case 'up':
         console.log(`You moved ${x}.`);
-        this.y -= 80;
+        this.y -= 83;
         break;
       case 'down':
         console.log(`You moved ${x}.`);
-        this.y += 80;
+        this.y += 83;
         break;
       case 'left':
         console.log(`You moved ${x}.`);
-        this.x -= 100;
+        this.x -= 101;
         break;
       case 'right':
         console.log(`You moved ${x}.`);
-        this.x += 100;
+        this.x += 101;
         break;
       default:
         console.log('Please choose a direction using the arrows on your keyboard.')
     }
   }
 
+
+
   // reset hero
   reset() {
     // set x and y to starting x and y
     this.x = 202;
-    this.y = 375;
+    this.y = 400;
   }
 
 }
@@ -98,10 +109,13 @@ class Hero {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-// Init allEnemies array
-allEnemies = [];
-// for each enemy, create and push new Enemy object into allEnemies array
-
+const bug1 = new Enemy(-101, 0, 200);
+const bug2 = new Enemy(-101, 83, 300);
+const bug3 = new Enemy((-101*4), 83, 300);
+const bug4 = new Enemy((-101*2), 166, 250);
+const allEnemies = [];
+allEnemies.push(bug1, bug2, bug3, bug4);
+console.log(allEnemies);
 // new Hero object
 const player = new Hero();
 
