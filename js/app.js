@@ -1,5 +1,9 @@
+const getRandomArbitrary = function (min, max) {
+return Math.random() * (max - min) + min;
+};
+
 // Enemies our player must avoid
-var Enemy = function(x,y, speed) {
+var Enemy = function(x,y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -8,7 +12,8 @@ var Enemy = function(x,y, speed) {
     //y pos
     this.y = y + 55; // center
     // TODO: make speed a random number between 200 & 300
-    this.speed = speed;
+    this.speed = getRandomArbitrary(200,300);
+
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -109,10 +114,10 @@ class Hero {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-const bug1 = new Enemy(-101, 0, 200);
-const bug2 = new Enemy(-101, 83, 300);
-const bug3 = new Enemy((-101*4), 83, 300);
-const bug4 = new Enemy((-101*2), 166, 250);
+const bug1 = new Enemy(-101, 0);
+const bug2 = new Enemy(-101, 83);
+const bug3 = new Enemy((-101*4), 83);
+const bug4 = new Enemy((-101*2), 166);
 const allEnemies = [];
 allEnemies.push(bug1, bug2, bug3, bug4);
 console.log(allEnemies);
