@@ -33,6 +33,7 @@ Enemy.prototype.update = function(dt) {
   if (this.x < this.boundary) {
     // move forward
     // increment x by speed * dt
+
     this.x += this.speed * dt;
   } else {
     // reset pos to start
@@ -45,6 +46,18 @@ Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Enemy.prototype.checkCollisions = function(player) {
+  if (this.y === player.y) {
+    if (this.x >= player.x - 50 && this.x <= player.x + 50) {
+
+      return true;
+    }
+
+  } else {
+    return false;
+  }
+}
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -55,20 +68,21 @@ class Hero {
     // x pos
     this.x = 202;
     // y pos
-    this.y = 400;
+    this.y = 387;
     // sprite image
     this.sprite = 'images/char-princess-girl.png';
   }
 
   //methods
 
-  // TODO: Check for collisions between hero and enemies
+
   // update position
   update(dt) {
-
-
-    // check collision here
     // check win here
+    if (this.y === -28) {
+      console.log('You won!');
+      // TODO: pause game & create modal letting player know they won
+    }
   }
 
   render() {
@@ -82,7 +96,7 @@ class Hero {
 // DONE: don't let player move off board
     switch (x) {
       case 'up':
-        if ( this.y <= -15) {
+        if ( this.y <= -28) {
           console.log("You tried to move off the board! Nope!!!");
           this.y;
         } else {
@@ -92,7 +106,7 @@ class Hero {
         break;
 
       case 'down':
-        if ( this.y >= 400) {
+        if ( this.y >= 387) {
           console.log("You tried to move off the board! Nope!!!");
           this.y;
         } else {
@@ -130,8 +144,10 @@ class Hero {
   reset() {
     // set x and y to starting x and y
     this.x = 202;
-    this.y = 400;
+    this.y = 387;
   }
+
+
 }
 
 // Now instantiate your objects.
