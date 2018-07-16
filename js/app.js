@@ -71,6 +71,8 @@ class Hero {
     this.y = 387;
     // sprite image
     this.sprite = 'images/char-princess-girl.png';
+    this.moving = false;
+    this.win = false;
   }
 
   //methods
@@ -79,15 +81,17 @@ class Hero {
   // update position
   update(dt) {
     // check win here
-    if (this.y === -28) {
-      console.log('You won!');
-      // TODO: pause game & create modal letting player know they won
+    if (this.y === -28 && !this.moving && !this.win) {
+      alert('You won! Play again!');
+      this.win = true;
+    
     }
   }
 
   render() {
     // Draw player sprite on current x and y coord
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    this.moving = false;
   }
 
   //handle keyboard input
@@ -138,6 +142,7 @@ class Hero {
       default:
         console.log('Please choose a direction using the arrows on your keyboard.')
     }
+    this.moving = true;
   }
 
   // reset hero

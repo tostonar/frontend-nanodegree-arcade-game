@@ -80,13 +80,14 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
+        reset();
     }
 
     function checkCollisions() {
       allEnemies.forEach(function(enemy) {
         if (enemy.checkCollisions(player)) {
           player.reset();
-          
+
         }
       });
     }
@@ -172,7 +173,10 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        if (player.win) {
+          player.reset();
+          player.win = false;
+        }
     }
 
     /* Go ahead and load all of the images we know we're going to need to
