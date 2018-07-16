@@ -1,15 +1,15 @@
-const getRandomArbitrary = function(min, max) {
+const getRandomArbitrary = function (min, max) {
   return Math.random() * (max - min) + min;
 };
 
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+const Enemy = function (x, y) {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
   // x pos
   this.x = x;
-  //y pos
+  // y pos
   this.y = y + 55; // center
   // DONE: make speed a random number between 200 & 300
   this.speed = getRandomArbitrary(200, 300);
@@ -24,7 +24,7 @@ var Enemy = function(x, y) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function (dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
   // all computers.
@@ -42,21 +42,19 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+Enemy.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.checkCollisions = function(player) {
+Enemy.prototype.checkCollisions = function (player) {
   if (this.y === player.y) {
     if (this.x >= player.x - 50 && this.x <= player.x + 50) {
-
       return true;
     }
 
-  } else {
     return false;
   }
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -75,16 +73,15 @@ class Hero {
     this.win = false;
   }
 
-  //methods
+  // methods
 
 
   // update position
-  update(dt) {
+  update() {
     // check win here
     if (this.y === -28 && !this.moving && !this.win) {
       alert('You won! Play again!');
       this.win = true;
-    
     }
   }
 
@@ -94,14 +91,14 @@ class Hero {
     this.moving = false;
   }
 
-  //handle keyboard input
+  // handle keyboard input
   handleInput(x) {
     // update player's x and y coord according to input
-// DONE: don't let player move off board
+    // DONE: don't let player move off board
     switch (x) {
       case 'up':
-        if ( this.y <= -28) {
-          console.log("You tried to move off the board! Nope!!!");
+        if (this.y <= -28) {
+          console.log('You tried to move off the board! Nope!!!');
           this.y;
         } else {
           console.log(`You moved ${x}.`);
@@ -110,8 +107,8 @@ class Hero {
         break;
 
       case 'down':
-        if ( this.y >= 387) {
-          console.log("You tried to move off the board! Nope!!!");
+        if (this.y >= 387) {
+          console.log('You tried to move off the board! Nope!!!');
           this.y;
         } else {
           console.log(`You moved ${x}.`);
@@ -121,7 +118,7 @@ class Hero {
 
       case 'left':
         if (this.x <= 0) {
-          console.log("You tried to move off the board! Nope!!!");
+          console.log('You tried to move off the board! Nope!!!');
           this.x;
         } else {
           console.log(`You moved ${x}.`);
@@ -130,17 +127,17 @@ class Hero {
         break;
 
       case 'right':
-      if (this.x >= 404) {
-        console.log("You tried to move off the board! Nope!!!");
-        this.x;
-      } else {
-        console.log(`You moved ${x}.`);
-        this.x += 101;
-      }
+        if (this.x >= 404) {
+          console.log('You tried to move off the board! Nope!!!');
+          this.x;
+        } else {
+          console.log(`You moved ${x}.`);
+          this.x += 101;
+        }
         break;
 
       default:
-        console.log('Please choose a direction using the arrows on your keyboard.')
+        console.log('Please choose a direction using the arrows on your keyboard.');
     }
     this.moving = true;
   }
@@ -151,8 +148,6 @@ class Hero {
     this.x = 202;
     this.y = 387;
   }
-
-
 }
 
 // Now instantiate your objects.
@@ -172,12 +167,12 @@ const player = new Hero();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
-  var allowedKeys = {
+document.addEventListener('keyup', function (e) {
+  const allowedKeys = {
     37: 'left',
     38: 'up',
     39: 'right',
-    40: 'down'
+    40: 'down',
   };
 
   player.handleInput(allowedKeys[e.keyCode]);
