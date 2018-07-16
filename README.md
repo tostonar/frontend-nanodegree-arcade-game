@@ -10,3 +10,15 @@ If you touch a bug, you will go back to the start.
 
 # Win the game
 If you make it to the water, you have won the game!
+
+## Built With
+
+This game is built out from [starter code](https://github.com/udacity/frontend-nanodegree-arcade-game) provided by Udacity.
+
+## Author
+
+[Andrea Toston](https://github.com/tostonar)
+
+## Contributing
+
+This repository is for a Udacity project. Therefore, we most likely will not accept pull requests.
