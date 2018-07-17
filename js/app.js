@@ -98,47 +98,39 @@ class Hero {
     switch (x) {
       case 'up':
         if (this.y <= -28) {
-          console.log('You tried to move off the board! Nope!!!');
-          this.y;
+          this.y = this.y;
         } else {
-          console.log(`You moved ${x}.`);
           this.y -= 83;
         }
         break;
 
       case 'down':
         if (this.y >= 387) {
-          console.log('You tried to move off the board! Nope!!!');
-          this.y;
+          this.y = this.y;
         } else {
-          console.log(`You moved ${x}.`);
           this.y += 83;
         }
         break;
 
       case 'left':
         if (this.x <= 0) {
-          console.log('You tried to move off the board! Nope!!!');
-          this.x;
+          this.x = this.x;
         } else {
-          console.log(`You moved ${x}.`);
           this.x -= 101;
         }
         break;
 
       case 'right':
         if (this.x >= 404) {
-          console.log('You tried to move off the board! Nope!!!');
-          this.x;
+          this.x = this.x;
         } else {
-          console.log(`You moved ${x}.`);
           this.x += 101;
         }
         break;
 
       default:
-        console.log('Please choose a direction using the arrows on your keyboard.');
     }
+
     this.moving = true;
   }
 
@@ -160,14 +152,14 @@ const bug3 = new Enemy((-101 * 4), 83);
 const bug4 = new Enemy((-101 * 2), 166);
 const allEnemies = [];
 allEnemies.push(bug1, bug2, bug3, bug4);
-console.log(allEnemies);
+
 // new Hero object
 const player = new Hero();
 
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function (e) {
+document.addEventListener('keyup', (e) => {
   const allowedKeys = {
     37: 'left',
     38: 'up',

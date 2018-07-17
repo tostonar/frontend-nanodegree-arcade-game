@@ -1,6 +1,9 @@
 frontend-nanodegree-arcade-game
 ===============================
 
+# Load the game
+You can download or clone this repository, and then open index.html in your web browser.
+
 # Play the game
 Play as Pretty Princess Purple and move across the board to the water without touching the bugs.
 
